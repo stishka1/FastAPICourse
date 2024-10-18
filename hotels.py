@@ -1,3 +1,4 @@
+from dependencies import PaginationDep
 from fastapi import FastAPI, APIRouter, Query
 from schemas.hotels import Hotel, HotelPatch
 
@@ -10,25 +11,24 @@ hotels = [
     {"id": 1, "title": "Sochi", "name": "sochi"},
     {"id": 2, "title": "Дубай", "name": "dubai"},
     {"id": 3, "title": "Мальдивы", "name": "maldivi"},
-
     {"id": 4, "title": "Геленджик", "name": "gelendzhik"},
     {"id": 5, "title": "Москва", "name": "moscow"},
     {"id": 6, "title": "Казань", "name": "kazan"},
-
     {"id": 7, "title": "Санкт-Петербург", "name": "spb"},
 ]
 
 @router.get("", summary="Получение списка всех отелей")
-def main(page: int | None = None, per_page: int | None = None):
+def main(pagination: PaginationDep, # для переиспользования пагинации
+         id: str | None = Query(None, description="Номер отеля")):
     """
         <h1>По умолчанию 5 отелей</h1>
     """
     global hotels
 
-    if page and per_page:
-        start = (page - 1)*per_page
-        end = page*per_page
-
+    # пагинация
+    if pagination.page and pagination.per_page:
+        start = (pagination.page - 1) * pagination.per_page
+        end = pagination.page * pagination.per_page
         paginated = hotels[start:end]
 
     else:
