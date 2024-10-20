@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2c0e13c-f9fe-4c3e-ac59-a3f31050b36c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/models/Rooms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/hotels.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic.ini" beforeDir="false" afterPath="$PROJECT_DIR$/alembic.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/migrations/versions/d7ac9d240dad_initial_migration.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/migrations/versions/e7ed9694f162_rooms_migration.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +111,7 @@
       <workItem from="1729025118147" duration="2364000" />
       <workItem from="1729267513535" duration="2677000" />
       <workItem from="1729369314885" duration="2747000" />
-      <workItem from="1729434506819" duration="6304000" />
+      <workItem from="1729434506819" duration="8256000" />
     </task>
     <task id="LOCAL-00001" summary="base">
       <option name="closed" value="true" />
