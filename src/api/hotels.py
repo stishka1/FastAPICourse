@@ -1,6 +1,13 @@
+from sqlalchemy.ext.asyncio import async_sessionmaker
+
 from src.api.dependencies import PaginationDep
-from fastapi import FastAPI, APIRouter, Query
+from fastapi import APIRouter, Query, Body
+
+from src.database import async_session_maker
+from src.models.hotels import HotelsOrm
 from src.schemas.hotels import Hotel, HotelPatch
+
+from sqlalchemy import insert
 
 router = APIRouter(
     prefix='/hotels',
@@ -36,17 +43,29 @@ def main(pagination: PaginationDep, # для переиспользования 
 
     return paginated
 
-@router.post("/{hotel_id}", summary="Добавление нового отеля")
-def add_hotel(hotel_id: int | None, hotel_data: Hotel):
-    global hotels
-    if hotel_id not in hotels:
-        hotels.append(
-                {
-                    "id": hotel_id,
-                    "name": hotel_data.name,
-                    "title": hotel_data.title,
-                }
-            )
+@router.post("", summary="Добавление нового отеля")
+async def add_hotel(hotel_data: Hotel = Body(openapi_examples={
+    "1": {
+        "summary": "Анапа",
+        "value": {
+            "title": "Mantera Resort & Congress 5*",
+            "location": "посёлок городского типа Сириус, Голубая улица, 1А"
+
+        }
+    },
+    "2": {
+        "summary": "Турция",
+        "value": {
+            "title": "Windsor Hotel & Convention Center Istanbul 5*",
+            "location": "Стамбул, Байрампаша, махалле Енидоган, улица Эрджиес, 7"
+
+        }
+    },
+})):
+    async with async_session_maker() as session:
+        add_stat =  insert(HotelsOrm).values(**hotel_data.model_dump()) # раскрытие в кварги, pydantic схема в словарь, потом раскрытие словаря
+        await session.execute(add_stat)
+        await session.commit()
     return {"status": "200"}
 
 @router.put("/{hotel_id}", summary="Обновление всех данных об отеле")

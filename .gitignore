@@ -1,3 +1,5 @@
 .idea
 .venv
 .env
+backup_1.zip
+backups !NFO.txt
