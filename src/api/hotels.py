@@ -26,8 +26,8 @@ hotels = [
 
 @router.get("", summary="Получение списка всех отелей")
 async def main(pagination: PaginationDep, # для переиспользования пагинации
-               id: int | None = Query(None, description="Номер отеля"),
                title: str | None = Query(None, description="Название отеля"),
+               location: str | None = Query(None, description="Адрес отеля"),
                ):
     """
         <h1>По умолчанию 5 отелей</h1>
@@ -35,10 +35,10 @@ async def main(pagination: PaginationDep, # для переиспользова�
     per_page = pagination.per_page or 5
     async with async_session_maker() as session:
         query = select(HotelsOrm)
-        if id:
-            query = query.filter_by(id=id)
+        if location:
+            query = query.filter(HotelsOrm.location.like(f'%{location}%'))
         if title:
-            query = query.filter_by(title=title)
+            query = query.filter(HotelsOrm.title.like(f'%{title}%'))
         query = (
             query
             .limit(per_page)
