@@ -7,22 +7,12 @@ from src.database import async_session_maker, engine
 from src.models.hotels import HotelsOrm
 from src.schemas.hotels import Hotel, HotelPatch
 
-from sqlalchemy import insert, select
+from sqlalchemy import insert, select, func # func - можем пользоваться функциями SQL в sqlalchemy
 
 router = APIRouter(
     prefix='/hotels',
     tags=['Отели']
 )
-
-hotels = [
-    {"id": 1, "title": "Sochi", "name": "sochi"},
-    {"id": 2, "title": "Дубай", "name": "dubai"},
-    {"id": 3, "title": "Мальдивы", "name": "maldivi"},
-    {"id": 4, "title": "Геленджик", "name": "gelendzhik"},
-    {"id": 5, "title": "Москва", "name": "moscow"},
-    {"id": 6, "title": "Казань", "name": "kazan"},
-    {"id": 7, "title": "Санкт-Петербург", "name": "spb"},
-]
 
 @router.get("", summary="Получение списка всех отелей")
 async def main(pagination: PaginationDep, # для переиспользования пагинации
@@ -36,9 +26,9 @@ async def main(pagination: PaginationDep, # для переиспользова�
     async with async_session_maker() as session:
         query = select(HotelsOrm)
         if location:
-            query = query.filter(HotelsOrm.location.like(f'%{location}%'))
+            query = query.filter(func.lower(HotelsOrm.location).contains(location.lower())) # в sqlalchemy по умолчанию встроена защита от sql иньекций, но с помощью contains мы страхуемся в случае с psycopg...
         if title:
-            query = query.filter(HotelsOrm.title.like(f'%{title}%'))
+            query = query.filter(func.lower(HotelsOrm.title).contains(title.lower()))
         query = (
             query
             .limit(per_page)
@@ -48,19 +38,6 @@ async def main(pagination: PaginationDep, # для переиспользова�
         result = await session.execute(query)
         hotels = result.scalars().all()
         return hotels
-
-    # return query
-
-    # пагинация
-    # if pagination.page and pagination.per_page:
-    #     start = (pagination.page - 1) * pagination.per_page
-    #     end = pagination.page * pagination.per_page
-    #     paginated = hotels[start:end]
-    #
-    # else:
-    #     paginated = hotels[:5]
-
-    # return paginated
 
 @router.post("", summary="Добавление нового отеля")
 async def add_hotel(hotel_data: Hotel = Body(openapi_examples={
