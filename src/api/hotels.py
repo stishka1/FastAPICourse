@@ -6,7 +6,7 @@ from fastapi import APIRouter, Query, Body
 from src.database import async_session_maker, engine
 from src.models.hotels import HotelsOrm
 from src.repos.hotels import HotelsRepository
-from src.schemas.hotels import Hotel, HotelPatch, HotelAdd
+from src.schemas.hotels import Hotel, HotelPatch
 
 from sqlalchemy import insert, select, func # func - можем пользоваться функциями SQL в sqlalchemy
 
@@ -14,6 +14,16 @@ router = APIRouter(
     prefix='/hotels',
     tags=['Отели']
 )
+
+@router.get("/{hotel_id}")
+async def get_one_hotel(hotel_id: int):
+    """
+        <h1>Получаем 1 отель по его номеру</h1>
+    """
+    async with async_session_maker() as session:
+        hotel = await HotelsRepository(session).get_one_or_none(id=hotel_id)
+    return {"status": "200", "data": hotel}
+
 
 @router.get("", summary="Получение списка всех отелей")
 async def main(pagination: PaginationDep, # для переиспользования пагинации
@@ -50,47 +60,66 @@ async def add_hotel(hotel_data: Hotel = Body(openapi_examples={
 
         }
     },
+    "3": {
+        "summary": "Египет",
+        "value": {
+            "title": "Domina Coral Bay Resort, Diving, SPA & Casino 5*",
+            "location": "мухафаза Южный Синай, Шарм-эль-Шейх, Domina Coral Bay"
+
+        }
+    },
+    "4": {
+        "summary": "Египет",
+        "value": {
+            "title": "Жасмин Палас Резорт и СПА 5*",
+            "location": "мухафаза Красное Море, Дорога Сахл Хашиш"
+
+        }
+    },
+    "5": {
+        "summary": "Тайланд",
+        "value": {
+            "title": "Long Beach Garden Hotel & Pavilions",
+            "location": "Nakluea 16 soi, 499/7, г. Паттайя"
+
+        }
+    },
 })):
     async with async_session_maker() as session:
-        # add_stat =  insert(HotelsOrm).values(**hotel_data.model_dump()) # раскрытие в кварги, pydantic схема в словарь, потом раскрытие словаря
-        #print(add_stat.compile(engine, compile_kwargs={"literal_binds": True})) # лог SQL транзакции в консоль с реальными данными - для дебага SQL запроса
-        # await session.execute(add_stat)
-        hotel = await HotelsRepository(session).add(title=hotel_data.title, location=hotel_data.location)
-        await session.commit()
+        hotel = await HotelsRepository(session).add(hotel_data)
+        await session.commit() # коммит здесь, а не в BaseRepository т.к. может быть много вставок/изменений данных и мы должны находиться в рамках 1 транзакции!
     return {"status": "200", "data": hotel}
 
-@router.put("/{hotel_id}", summary="Обновление всех данных об отеле")
-def update_all(hotel_id: int, hotel_data: Hotel):
-    global hotels
-    hotel = [hotel for hotel in hotels if hotel["id"]== hotel_id][0]
-    hotel["name"] = hotel_data.name
-    hotel["title"] = hotel_data.title
 
-    return hotels
 
-@router.delete("/{hotel_id}", summary="Удаление отеля по id")
-def delete_hotel(hotel_id: int):
-    global hotels
-    for i in hotels:
-        if hotel_id == i['id']:
-            hotels.remove(i)
+
+
+@router.put("", summary="Обновление всех данных об отеле")
+async def update(hotel_data: Hotel, hotel_id: int | None): # вынесли отдельно id (не брали из схемы) чтобы параметр появился в пути и можно было вводить и обновлять по нему
+    async with async_session_maker() as session:
+        await HotelsRepository(session).update(hotel_data, id=hotel_id)
+        await session.commit()
     return {"status": "200"}
 
 
 
-@router.patch("/{hotel_id}", summary="Частичное обновление данных отеля")
-def update_one(hotel_id: int, hotel_data: HotelPatch):
+
+@router.patch("", summary="Частичное обновление данных отеля")
+async def update_partially(hotel_data: HotelPatch, hotel_id: int): # вынесли отдельно id (не брали из схемы) чтобы параметр появился в пути и можно было вводить и обновлять по нему
     """
-        <h3>Частичное обновление данных об отеле</h3>
+        <h1>Частичное обновление данных об отеле</h1>
     """
+    async with async_session_maker() as session:
+        await HotelsRepository(session).update_partially(hotel_data, exclude_unset=True, id=hotel_id) # все благодаря незаданным параметрам exclude_unset
+        await session.commit()
+    return {"status": "200"}
 
-    global hotels
-    hotel = [hotel for hotel in hotels if hotel["id"]== hotel_id][0]
 
 
-    if hotel_data.title:
-        hotel["title"] = hotel_data.title
-    if hotel_data.name:
-        hotel["name"] = hotel_data.name
 
+@router.delete("/{hotel_id}", summary="Удаление отеля по id")
+async def delete_hotel(hotel_id: int):
+    async with async_session_maker() as session:
+        await HotelsRepository(session).delete(id=hotel_id)
+        await session.commit()
     return {"status": "200"}

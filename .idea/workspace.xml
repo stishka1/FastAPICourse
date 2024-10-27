@@ -43,7 +43,7 @@
     <setting file="file://$PROJECT_DIR$/src/config.py" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -115,7 +115,8 @@
       <workItem from="1729369314885" duration="2747000" />
       <workItem from="1729434506819" duration="9073000" />
       <workItem from="1729938553044" duration="14871000" />
-      <workItem from="1730019283518" duration="7310000" />
+      <workItem from="1730019283518" duration="11769000" />
+      <workItem from="1730032759365" duration="5721000" />
     </task>
     <task id="LOCAL-00001" summary="base">
       <option name="closed" value="true" />
@@ -181,16 +182,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="base" />
     <option name="LAST_COMMIT_MESSAGE" value="base" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/repos/base.py</url>
-          <line>3</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

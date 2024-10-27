@@ -22,9 +22,3 @@ class HotelsRepository(BaseRepository):
 
         result = await self.session.execute(query)
         return result.scalars().all()
-
-    async def add(self, **data):
-        # existing_hotel = self.get_one_or_none(title=title)
-        # if not existing_hotel:
-            query = insert(self.model).values(**data)
-            await self.session.execute(query)
