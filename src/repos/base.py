@@ -1,4 +1,5 @@
-from sqlalchemy import select
+from sqlalchemy import select, insert
+
 
 class BaseRepository:
     model = None
@@ -15,3 +16,8 @@ class BaseRepository:
         query = select(self.model).filter_by(**filter_by)
         result = await self.session.execute(query)
         return result.scalars().one_or_none()
+
+    #async def add(self, **data):
+            #query = insert(self.model)
+            #result = await self.session.execute(query)
+            #return result.scalars().one()

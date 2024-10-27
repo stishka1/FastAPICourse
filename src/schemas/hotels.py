@@ -5,5 +5,10 @@ class Hotel(BaseModel):
     location: str
 
 class HotelPatch(BaseModel):
-    title: str | None = None # обязательно указывать по умолчанию иначе работать не будет
-    location: str | None = None # обязательно указывать по умолчанию иначе работать не будет
+    title: str | None = None # обязательно указывать значение по умолчанию иначе работать не будет
+    location: str | None = None # обязательно указывать значение по умолчанию иначе работать не будет
+
+class HotelAdd(BaseModel):
+        id: int | None = None
+        title: str
+        location: str

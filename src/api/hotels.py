@@ -6,7 +6,7 @@ from fastapi import APIRouter, Query, Body
 from src.database import async_session_maker, engine
 from src.models.hotels import HotelsOrm
 from src.repos.hotels import HotelsRepository
-from src.schemas.hotels import Hotel, HotelPatch
+from src.schemas.hotels import Hotel, HotelPatch, HotelAdd
 
 from sqlalchemy import insert, select, func # func - можем пользоваться функциями SQL в sqlalchemy
 
@@ -52,11 +52,12 @@ async def add_hotel(hotel_data: Hotel = Body(openapi_examples={
     },
 })):
     async with async_session_maker() as session:
-        add_stat =  insert(HotelsOrm).values(**hotel_data.model_dump()) # раскрытие в кварги, pydantic схема в словарь, потом раскрытие словаря
+        # add_stat =  insert(HotelsOrm).values(**hotel_data.model_dump()) # раскрытие в кварги, pydantic схема в словарь, потом раскрытие словаря
         #print(add_stat.compile(engine, compile_kwargs={"literal_binds": True})) # лог SQL транзакции в консоль с реальными данными - для дебага SQL запроса
-        await session.execute(add_stat)
+        # await session.execute(add_stat)
+        hotel = await HotelsRepository(session).add(title=hotel_data.title, location=hotel_data.location)
         await session.commit()
-    return {"status": "200"}
+    return {"status": "200", "data": hotel}
 
 @router.put("/{hotel_id}", summary="Обновление всех данных об отеле")
 def update_all(hotel_id: int, hotel_data: Hotel):

@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2c0e13c-f9fe-4c3e-ac59-a3f31050b36c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/repos/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repos/hotels.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/hotels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hotels.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repos/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repos/hotels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/hotels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/hotels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/hotels.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +115,7 @@
       <workItem from="1729369314885" duration="2747000" />
       <workItem from="1729434506819" duration="9073000" />
       <workItem from="1729938553044" duration="14871000" />
-      <workItem from="1730019283518" duration="3130000" />
+      <workItem from="1730019283518" duration="7310000" />
     </task>
     <task id="LOCAL-00001" summary="base">
       <option name="closed" value="true" />
@@ -180,5 +181,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="base" />
     <option name="LAST_COMMIT_MESSAGE" value="base" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/repos/base.py</url>
+          <line>3</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
