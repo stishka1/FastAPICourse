@@ -5,6 +5,7 @@ from fastapi import APIRouter, Query, Body
 
 from src.database import async_session_maker, engine
 from src.models.hotels import HotelsOrm
+from src.repos.hotels import HotelsRepository
 from src.schemas.hotels import Hotel, HotelPatch
 
 from sqlalchemy import insert, select, func # func - можем пользоваться функциями SQL в sqlalchemy
@@ -24,20 +25,12 @@ async def main(pagination: PaginationDep, # для переиспользова�
     """
     per_page = pagination.per_page or 5
     async with async_session_maker() as session:
-        query = select(HotelsOrm)
-        if location:
-            query = query.filter(func.lower(HotelsOrm.location).contains(location.lower())) # в sqlalchemy по умолчанию встроена защита от sql иньекций, но с помощью contains мы страхуемся в случае с psycopg...
-        if title:
-            query = query.filter(func.lower(HotelsOrm.title).contains(title.lower()))
-        query = (
-            query
-            .limit(per_page)
-            .offset(per_page * (pagination.page - 1))
+        return await HotelsRepository(session).get_all(
+            location=location,
+            title=title,
+            limit=per_page,
+            offset=per_page * (pagination.page - 1)
         )
-
-        result = await session.execute(query)
-        hotels = result.scalars().all()
-        return hotels
 
 @router.post("", summary="Добавление нового отеля")
 async def add_hotel(hotel_data: Hotel = Body(openapi_examples={
