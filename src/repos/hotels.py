@@ -1,14 +1,14 @@
 from sqlalchemy import select, func
-from sqlalchemy.dialects.mysql import insert
-
 from src.models.hotels import HotelsOrm
 from src.repos.base import BaseRepository
+from src.schemas.hotels import Hotel
 
 
 class HotelsRepository(BaseRepository):
     model = HotelsOrm
+    schema = Hotel
 
-    async def get_all(self, location, title, limit, offset):
+    async def get_all(self, location, title, limit, offset) -> list[Hotel]: # возвращается pydantic схема Hotel
         query = select(HotelsOrm)
         if location:
             query = query.filter(func.lower(HotelsOrm.location).contains(location.lower())) # в sqlalchemy по умолчанию встроена защита от sql иньекций, но с помощью contains мы страхуемся в случае с psycopg...
@@ -21,4 +21,4 @@ class HotelsRepository(BaseRepository):
         )
 
         result = await self.session.execute(query)
-        return result.scalars().all()
+        return [Hotel.model_validate(hotel, from_attributes=True) for hotel in result.scalars().all()]

@@ -6,7 +6,7 @@ from fastapi import APIRouter, Query, Body
 from src.database import async_session_maker, engine
 from src.models.hotels import HotelsOrm
 from src.repos.hotels import HotelsRepository
-from src.schemas.hotels import Hotel, HotelPatch
+from src.schemas.hotels import Hotel, HotelPatch, HotelAdd
 
 from sqlalchemy import insert, select, func # func - можем пользоваться функциями SQL в sqlalchemy
 
@@ -21,12 +21,11 @@ async def get_one_hotel(hotel_id: int):
         <h1>Получаем 1 отель по его номеру</h1>
     """
     async with async_session_maker() as session:
-        hotel = await HotelsRepository(session).get_one_or_none(id=hotel_id)
-    return {"status": "200", "data": hotel}
+        return await HotelsRepository(session).get_one_or_none(id=hotel_id)
 
 
 @router.get("", summary="Получение списка всех отелей")
-async def main(pagination: PaginationDep, # для переиспользования пагинации
+async def get_all(pagination: PaginationDep, # для переиспользования пагинации
                title: str | None = Query(None, description="Название отеля"),
                location: str | None = Query(None, description="Адрес отеля"),
                ):
@@ -43,7 +42,7 @@ async def main(pagination: PaginationDep, # для переиспользова�
         )
 
 @router.post("", summary="Добавление нового отеля")
-async def add_hotel(hotel_data: Hotel = Body(openapi_examples={
+async def add_hotel(hotel_data: HotelAdd = Body(openapi_examples={
     "1": {
         "summary": "Анапа",
         "value": {
@@ -95,7 +94,7 @@ async def add_hotel(hotel_data: Hotel = Body(openapi_examples={
 
 
 @router.put("", summary="Обновление всех данных об отеле")
-async def update(hotel_data: Hotel, hotel_id: int | None): # вынесли отдельно id (не брали из схемы) чтобы параметр появился в пути и можно было вводить и обновлять по нему
+async def update(hotel_data: HotelAdd, hotel_id: int | None): # вынесли отдельно id (не брали из схемы) чтобы параметр появился в пути и можно было вводить и обновлять по нему
     async with async_session_maker() as session:
         await HotelsRepository(session).update(hotel_data, id=hotel_id)
         await session.commit()
