@@ -1,6 +1,9 @@
-from fastapi import APIRouter, HTTPException, Response, Request
+from http.client import responses
+
+from fastapi import APIRouter, HTTPException, Response
 from passlib.context import CryptContext
 
+from src.api.dependencies import UserDep
 from src.database import async_session_maker
 from src.repos.users import UsersRepository
 from src.schemas.users import UserRequestAdd, UserAdd
@@ -34,10 +37,13 @@ async def login(data: UserRequestAdd, response: Response):
     response.set_cookie("access_token", access_token)
     return {"access_token": access_token}
 
-@router.get("/get_token")
-async def get_token(data: Request):
-    try:
-        if data.cookies['access_token']:
-            return data.cookies['access_token']
-    except:
-        raise HTTPException(status_code=401, detail="Пользователь не распознан")
+@router.get("/about_me", summary="Информация обо мне")
+async def get_token(user_id: UserDep):
+    async with async_session_maker() as session:
+        user = await UsersRepository(session).get_one_or_none(id=user_id)
+    return user
+
+@router.post('/logout', summary="Выйти из системы")
+async  def logout(response: Response):
+    response.delete_cookie("access_token")
+    return {"detail": "успешно вышли"}
