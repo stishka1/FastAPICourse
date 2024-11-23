@@ -7,10 +7,8 @@
     <list default="true" id="f2c0e13c-f9fe-4c3e-ac59-a3f31050b36c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/dependencies.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/dependencies.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/users.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +65,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -119,7 +117,13 @@
       <workItem from="1730032759365" duration="6748000" />
       <workItem from="1730054919822" duration="3877000" />
       <workItem from="1731692671703" duration="596000" />
-      <workItem from="1731755374329" duration="23593000" />
+      <workItem from="1731755374329" duration="25019000" />
+      <workItem from="1731834486318" duration="943000" />
+      <workItem from="1731836248223" duration="10000" />
+      <workItem from="1731870762388" duration="393000" />
+      <workItem from="1731871321284" duration="29000" />
+      <workItem from="1731871360472" duration="219000" />
+      <workItem from="1731957100633" duration="15000" />
     </task>
     <task id="LOCAL-00001" summary="base">
       <option name="closed" value="true" />

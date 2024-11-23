@@ -15,7 +15,7 @@ router = APIRouter(
     tags=['Отели']
 )
 
-@router.get("/{hotel_id}")
+@router.get("/{hotel_id}", summary="Получить информацию об отеле")
 async def get_one_hotel(hotel_id: int):
     """
         <h1>Получаем 1 отель по его номеру</h1>

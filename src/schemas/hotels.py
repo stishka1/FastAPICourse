@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+# схема используется для добавления и обновления всех данных
+# нет id т.к. мы вводим его сами (передаем в параметрах пути)
 class HotelAdd(BaseModel):
     title: str
     location: str
