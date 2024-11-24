@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from sqlalchemy import select, insert, update, delete
-
 from src.schemas.hotels import Hotel
 
 
@@ -11,14 +10,23 @@ class BaseRepository: # паттерн Репозиторий в действи�
     def __init__(self, session):
         self.session = session
 
+    # вовзращает все данные с фильтрами
+    async def get_filtered(self, **filter_by):
+        query = select(self.model).filter_by(**filter_by)
+        result = await self.session.execute(query)
+        return [self.schema.model_validate(model, from_attributes=True) for model in result.scalars().all()]
+    """
+    паттерн DataMapper в действии -> возвращаем не объект базы данных, а pydantic схему
+    с помощью from_attributes мы забираем данные с модели (все поля)
+    """
+
+    # вовзращает все данные без фильтров
     async def get_all(self, *args, **kwargs):
-            query = select(self.model)
-            result = await self.session.execute(query)
-            return [self.schema.model_validate(model, from_attributes=True) for model in result.scalars().all()]
-            """
-            паттерн DataMapper в действии -> возвращаем не объект базы данных, а pydantic схему
-            с помощью from_attributes мы забираем данные с модели (все поля)
-            """
+        return await self.get_filtered()
+        """
+        паттерн DataMapper в действии -> возвращаем не объект базы данных, а pydantic схему
+        с помощью from_attributes мы забираем данные с модели (все поля)
+        """
 
     async def get_one_or_none(self, **filter_by):
         query = select(self.model).filter_by(**filter_by)

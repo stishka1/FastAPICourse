@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2c0e13c-f9fe-4c3e-ac59-a3f31050b36c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/utils/db_manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/dependencies.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/dependencies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/hotels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hotels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/rooms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/rooms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repos/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/hotels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/hotels.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/rooms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/rooms.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +131,8 @@
       <workItem from="1731871321284" duration="29000" />
       <workItem from="1731871360472" duration="219000" />
       <workItem from="1731957100633" duration="15000" />
+      <workItem from="1732365907291" duration="25323000" />
+      <workItem from="1732449387365" duration="6822000" />
     </task>
     <task id="LOCAL-00001" summary="base">
       <option name="closed" value="true" />
