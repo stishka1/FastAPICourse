@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2c0e13c-f9fe-4c3e-ac59-a3f31050b36c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/bookings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/bookings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/repos/bookings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/schemas/bookings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/bookings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/bookings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/migrations/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/migrations/env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/db_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/db_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/bookings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/bookings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +128,8 @@
       <workItem from="1732449387365" duration="10450000" />
       <workItem from="1732530656629" duration="3579000" />
       <workItem from="1732567346232" duration="14000" />
-      <workItem from="1732627845576" duration="8873000" />
+      <workItem from="1732627845576" duration="11002000" />
+      <workItem from="1732643466748" duration="2872000" />
     </task>
     <task id="LOCAL-00001" summary="base">
       <option name="closed" value="true" />
