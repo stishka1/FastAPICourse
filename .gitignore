@@ -3,3 +3,13 @@
 .env
 backup_1.zip
 backups !NFO.txt
+src/__pycache__/main.cpython-311.pyc
+src/api/__pycache__/bookings.cpython-311.pyc
+src/schemas/__pycache__/bookings.cpython-311.pyc
+src/models/__pycache__/bookings.cpython-311.pyc
+src/migrations/versions/__pycache__/2024_11_24_2007-650df3c137ee_add_booking.cpython-311.pyc
+src/migrations/versions/2024_11_24_2007-650df3c137ee_add_booking.py
+src/migrations/__pycache__/env.cpython-311.pyc
+src/__pycache__/main.cpython-311.pyc
+src/utils/__pycache__/db_manager.cpython-311.pyc
+src/__pycache__/main.cpython-311.pyc
