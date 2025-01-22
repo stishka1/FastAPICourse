@@ -1,3 +1,5 @@
+from datetime import date
+
 from sqlalchemy.ext.asyncio import async_sessionmaker
 
 from src.api.dependencies import PaginationDep, DBDep
@@ -23,18 +25,24 @@ async def get_all(pagination: PaginationDep, # для переиспользов
                 db: DBDep,
                 title: str | None = Query(None, description="Название отеля"),
                 location: str | None = Query(None, description="Адрес отеля"),
+                date_from: date = Query(example="2024-08-01", description="Дата заселения"),
+                date_to: date = Query(example='2024-08-10', description="Дата выезда")
                ):
     """
         <h1>По умолчанию 5 отелей</h1>
     """
     per_page = pagination.per_page or 5
-    return await db.hotels.get_all(
-        location=location,
-        title=title,
-        limit=per_page,
-        offset=per_page * (pagination.page - 1)
-    )
+    # return await db.hotels.get_all(
+    #     location=location,
+    #     title=title,
+    #     limit=per_page,
+    #     offset=per_page * (pagination.page - 1)
+    # )
 
+    return await db.hotels.get_filtered_by_time(
+        date_from=date_from,
+        date_to=date_to,
+    )
 @router.post("", summary="Добавление нового отеля")
 async def add_hotel(db: DBDep, hotel_data: HotelAdd = Body(openapi_examples={
     "1": {
