@@ -17,7 +17,7 @@ class UserAdd(BaseModel):
     last_name: Optional[str] = None
     username: Optional[str] = None
 
-# отдаем все кроме пароля (что никому никуда его не показывать)
+# отдаем все кроме пароля (чтобы никому никуда его не показывать)
 class User(BaseModel):
     id: int
     email: EmailStr

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import EmailStr
 
 from src.database import Base
@@ -12,3 +14,4 @@ class UsersOrm(Base):
     first_name: Mapped[str | None]
     last_name: Mapped[str | None]
     username: Mapped[str | None]
+    # create_at: Mapped[datetime | None]

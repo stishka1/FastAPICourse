@@ -1,3 +1,5 @@
+# Определяет функции, обеспечивающие зависимости для эндпоинтов (например получение user id).
+
 from fastapi import HTTPException, Request
 from typing import Annotated
 from fastapi import Query, Depends

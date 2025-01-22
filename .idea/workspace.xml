@@ -5,10 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2c0e13c-f9fe-4c3e-ac59-a3f31050b36c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FastAPICourse.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FastAPICourse.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/auth.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/bookings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/bookings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/dependencies.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/dependencies.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/hotels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/hotels.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/bookings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/bookings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repos/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/base.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schemas/bookings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/bookings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/auth.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +44,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/stishka1/FastAPICourse.git&quot;,
-    &quot;accountId&quot;: &quot;33995ddd-8746-4acc-a17b-9272c168bf7b&quot;
+    &quot;accountId&quot;: &quot;971c0c46-f1d5-4d17-b539-1ff956edee4e&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -59,13 +69,13 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/VSC/FASTAPI/FastAPICourse/src/models&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/VSC/FASTAPI/FastAPICourse&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -129,7 +139,15 @@
       <workItem from="1732530656629" duration="3579000" />
       <workItem from="1732567346232" duration="14000" />
       <workItem from="1732627845576" duration="11002000" />
-      <workItem from="1732643466748" duration="2872000" />
+      <workItem from="1732643466748" duration="11400000" />
+      <workItem from="1732655386279" duration="657000" />
+      <workItem from="1732908071926" duration="1121000" />
+      <workItem from="1732911492578" duration="869000" />
+      <workItem from="1732968844472" duration="1874000" />
+      <workItem from="1733131640262" duration="1000" />
+      <workItem from="1733587426333" duration="274000" />
+      <workItem from="1737486390372" duration="660000" />
+      <workItem from="1737534872185" duration="9002000" />
     </task>
     <task id="LOCAL-00001" summary="base">
       <option name="closed" value="true" />

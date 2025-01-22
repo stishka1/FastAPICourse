@@ -2,12 +2,7 @@ from sqlalchemy.ext.asyncio import async_sessionmaker
 
 from src.api.dependencies import PaginationDep, DBDep
 from fastapi import APIRouter, Query, Body
-
-from src.database import async_session_maker, engine
-from src.models.hotels import HotelsOrm
-from src.repos.hotels import HotelsRepository
 from src.schemas.hotels import Hotel, HotelPatch, HotelAdd
-
 from sqlalchemy import insert, select, func # func - можем пользоваться функциями SQL в sqlalchemy
 
 router = APIRouter(

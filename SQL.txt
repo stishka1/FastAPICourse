@@ -1,0 +1,8 @@
+with rooms_count as (
+	select room_id, count(*) as reserved_rooms from bookings
+	where date_from <= '2024-06-01' and date_to >= '2024-12-31'
+	group by room_id
+)
+select rooms.id as room_id, quantity - coalesce(reserved_rooms, 0) as available_rooms
+from rooms
+left join rooms_count on rooms.id = rooms_count.room_id;

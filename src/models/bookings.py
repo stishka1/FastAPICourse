@@ -1,3 +1,5 @@
+# Содержит ORM-модели (например, SQLAlchemy), описывающие таблицы базы данных
+
 from datetime import date
 from sqlalchemy.ext.hybrid import hybrid_property
 

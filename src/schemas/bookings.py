@@ -1,3 +1,5 @@
+# Используются для валидации и сериализации данных (Pydantic-модели)
+
 from datetime import date
 from pydantic import BaseModel, ConfigDict
 

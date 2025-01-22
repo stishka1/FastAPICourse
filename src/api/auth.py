@@ -1,3 +1,5 @@
+# Определяют API-эндпоинты и связывают их с сервисами
+
 from http.client import responses
 
 from fastapi import APIRouter, HTTPException, Response
@@ -13,17 +15,23 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 router = APIRouter(prefix="/auth", tags=["Пользователи"])
 
-@router.post("/register")
+@router.post("/register", summary="Регистрация")
 async def register(db: DBDep, data: UserRequestAdd):
 
     hashed_password = pwd_context.hash(data.password)
-    new_user_data = UserAdd(email=data.email, hashed_password=hashed_password, first_name=data.first_name, last_name=data.last_name, username=data.username)
+    new_user_data = UserAdd(email=data.email,
+                            hashed_password=hashed_password,
+                            first_name=data.first_name,
+                            last_name=data.last_name,
+                            username=data.username)
 
     await db.users.add(new_user_data)
     await db.commit()
     return {"status": "200"}
 
-@router.post("/login")
+
+
+@router.post("/login", summary="Вход в систему")
 async def login(db: DBDep, data: UserRequestAdd, response: Response):
     try:
         user = await db.users.get_user_with_hashed_password(email=data.email)
@@ -36,6 +44,8 @@ async def login(db: DBDep, data: UserRequestAdd, response: Response):
     access_token = AuthService().create_access_token({"user_id": user.id})
     response.set_cookie("access_token", access_token)
     return {"access_token": access_token}
+
+
 
 @router.get("/about_me", summary="Информация обо мне")
 async def get_token(db: DBDep, user_id: UserDep):
