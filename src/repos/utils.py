@@ -1,11 +1,16 @@
 from datetime import date
 from sqlalchemy import select, func
 from src.models.bookings import BookingsOrm
+from src.models.hotels import HotelsOrm
 from src.models.rooms import RoomsOrm
 
 
 # Изначально эта функция была в репозитории номеров, но мы ее вынесли сюда, чтобы переиспользовать в репозитории отелей
-def rooms_ids_for_booking(date_from: date, date_to: date, hotel_id: int | None = None):
+# готовые id для бронирования
+def rooms_ids_for_booking(date_from: date,
+                          date_to: date,
+                          hotel_id: int | None = None,
+                          ):
     """
     ------------=================SQL запрос=================-----------------
         with rooms_count as (
@@ -39,20 +44,26 @@ def rooms_ids_for_booking(date_from: date, date_to: date, hotel_id: int | None =
         .cte(name='rooms_left_table')
     )
 
-    # если hotel_id будет, то профильтруемся по нему, иначе без него
+    #-----------------------------------------------------------------------
+    # для ручки получения всех номеров (опциональная фильтрафия по hotel_id)
     rooms_ids_for_hotel = (
         select(RoomsOrm.id)
         .select_from(RoomsOrm)
     )
+
+    # если hotel_id будет, то профильтруемся по нему, иначе без него
     if hotel_id is not None:
         rooms_ids_for_hotel = (
         rooms_ids_for_hotel.filter_by(hotel_id=hotel_id)
         )
 
+    # наш запрос является sub query (подзапросом)
     rooms_ids_for_hotel = (
         rooms_ids_for_hotel
         .subquery(name="rooms_ids_for_hotel")  # для алхимии что это подзапрос, не Common Table Expression (CTE)
     )
+    #-----------------------------------------------------------------------
+
 
     query = (
         select(rooms_left_table.c.room_id)

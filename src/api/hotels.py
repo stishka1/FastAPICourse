@@ -20,7 +20,13 @@ async def get_one_hotel(db: DBDep, hotel_id: int):
     return await db.hotels.get_one_or_none(id=hotel_id)
 
 
-@router.get("", summary="Получение списка всех отелей")
+
+
+
+
+
+
+@router.get("", summary="Получение отелей со свободными номерами на определенные даты")
 async def get_all(pagination: PaginationDep, # для переиспользования пагинации
                 db: DBDep,
                 title: str | None = Query(None, description="Название отеля"),
@@ -32,17 +38,24 @@ async def get_all(pagination: PaginationDep, # для переиспользов
         <h1>По умолчанию 5 отелей</h1>
     """
     per_page = pagination.per_page or 5
-    # return await db.hotels.get_all(
-    #     location=location,
-    #     title=title,
-    #     limit=per_page,
-    #     offset=per_page * (pagination.page - 1)
-    # )
 
     return await db.hotels.get_filtered_by_time(
         date_from=date_from,
         date_to=date_to,
+        location=location,
+        title=title,
+        limit=per_page,
+        offset=per_page * (pagination.page - 1)
     )
+
+
+
+
+
+
+
+
+
 @router.post("", summary="Добавление нового отеля")
 async def add_hotel(db: DBDep, hotel_data: HotelAdd = Body(openapi_examples={
     "1": {

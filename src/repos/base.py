@@ -10,12 +10,14 @@ class BaseRepository: # паттерн Репозиторий в действи�
     def __init__(self, session):
         self.session = session
 
+
+
     # вовзращает все данные с фильтрами
     async def get_filtered(self, *filter, **filter_by):
         query = (
             select(self.model)
             .filter_by(**filter_by)
-            .filter(*filter)
+            .filter(*filter) # добавили в блоке про сырые sql запросы
         )
         result = await self.session.execute(query)
         return [self.schema.model_validate(model, from_attributes=True) for model in result.scalars().all()]
@@ -23,6 +25,8 @@ class BaseRepository: # паттерн Репозиторий в действи�
     паттерн DataMapper в действии -> возвращаем не объект базы данных, а pydantic схему
     с помощью from_attributes мы забираем данные с модели (все поля)
     """
+
+
 
     # вовзращает все данные без фильтров
     async def get_all(self, *args, **kwargs):
