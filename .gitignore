@@ -14,3 +14,17 @@ src/__pycache__/main.cpython-311.pyc
 src/utils/__pycache__/db_manager.cpython-311.pyc
 src/__pycache__/main.cpython-311.pyc
 src/__pycache__/main.cpython-311.pyc
+схема таблиц.jpg
+sql получение свободных отелей.jpg
+sql получение свободных отелей2.jpg
+backup_3.zip
+backup_2.zip
+backup_1.zip
+src/migrations/__pycache__/env.cpython-311.pyc
+src/migrations/__pycache__/env.cpython-311.pyc
+src/api/__pycache__/comfort.cpython-311.pyc
+src/migrations/versions/2025_01_23_1737-8f4d6eed6ee5_добавили_таблицу_удобств.py
+src/migrations/versions/__pycache__/2025_01_23_1737-8f4d6eed6ee5_добавили_таблицу_удобств.cpython-311.pyc
+src/models/__pycache__/comfort.cpython-311.pyc
+src/schemas/__pycache__/comfort.cpython-311.pyc
+src/utils/__pycache__/db_manager.cpython-311.pyc

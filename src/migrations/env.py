@@ -13,6 +13,7 @@ from src.models.hotels import HotelsOrm
 from src.models.rooms import RoomsOrm
 from src.models.users import UsersOrm
 from src.models.bookings import BookingsOrm
+from src.models.comfort import ComfortOrm # испортируем любую модель чтобы алембик увидел этот файл, нет необходимости в импорте 2х моделей
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
