@@ -28,3 +28,4 @@ src/migrations/versions/__pycache__/2025_01_23_1737-8f4d6eed6ee5_добавил�
 src/models/__pycache__/comfort.cpython-311.pyc
 src/schemas/__pycache__/comfort.cpython-311.pyc
 src/utils/__pycache__/db_manager.cpython-311.pyc
+src/api/__pycache__/rooms.cpython-311.pyc

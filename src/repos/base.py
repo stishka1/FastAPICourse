@@ -49,6 +49,18 @@ class BaseRepository: # паттерн Репозиторий в действи�
         model = result.scalars().one()
         return self.schema.model_validate(model, from_attributes=True)
 
+
+#-------------------------- Массовое изменение данных ------------------------------------------------------------------
+    # добавить массив данных в БД - для m2m таблицы rooms_comfort
+    async def add_bulk(self, data: list[BaseModel]):
+        add_data_stm = insert(self.model).values([item.model_dump() for item in data])
+        await self.session.execute(add_data_stm)
+
+# -------------------------- Массовое изменение данных ------------------------------------------------------------------
+
+
+
+
     # полностью обновить объект (обновить всю информацию)
     async def update(self, data: BaseModel, **filter_by) -> None:
         upd_data_stm = update(self.model).filter_by(**filter_by).values(**data.model_dump()) # сначала фильтруемся, потом обновляем и так всегда

@@ -8,7 +8,7 @@ from src.repos.bookings import BookingRepository
 from src.repos.hotels import HotelsRepository
 from src.repos.rooms import RoomsRepository
 from src.repos.users import UsersRepository
-from src.repos.comfort import ComfortRepository
+from src.repos.comfort import ComfortRepository, RoomsComfortRepository
 
 
 class DBManager:
@@ -23,6 +23,7 @@ class DBManager:
         self.users = UsersRepository(self.session)
         self.bookings = BookingRepository(self.session)
         self.comfort = ComfortRepository(self.session)
+        self.rooms_comfort = RoomsComfortRepository(self.session)
 
         return self
 
