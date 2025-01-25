@@ -46,35 +46,39 @@ async def update_room(db: DBDep, room_data: AddRoomRequest, room_id: int | None,
     _room_data = AddRoom(hotel_id=hotel_id, **room_data.model_dump())
     await db.rooms.update(_room_data, id=room_id, hotel_id=hotel_id)
 
+    # Работа с m2m таблицей удобств добавление / удаление
+    await db.rooms_comfort.set_room_comfort(room_id, comfort_ids=room_data.comfort_ids)
 
-    room_comfort_data = await db.rooms_comfort.get_filtered(room_id=room_id) # [RoomsComfort(room_id=11, comfort_id=1, id=1), RoomsComfort(room_id=11, comfort_id=2, id=2)]
-    d = {room_id: [k.comfort_id for k in room_comfort_data]} # {11: [2, 1]}
 
-    # добавить то, чего нет. Что есть в боди и БД - не трогаем.
-    for i in room_data.comfort_ids:
-           if i not in d[room_id]:
-               await db.rooms_comfort.add(RoomsComfortAdd(room_id=room_id, comfort_id=i))
-    # удалить то, чего нет
-    for j in d[room_id]:
-        if j not in room_data.comfort_ids:
-            await db.rooms_comfort.delete(comfort_id=j)
+# мой вариант решения
+#    room_comfort_data = await db.rooms_comfort.get_filtered(room_id=room_id) # [RoomsComfort(room_id=11, comfort_id=1, id=1), RoomsComfort(room_id=11, comfort_id=2, id=2)]
+#    d = {room_id: [k.comfort_id for k in room_comfort_data]} # {11: [2, 1]}
+#
+#    # добавить то, чего нет. Что есть в боди и БД - не трогаем.
+#    for i in room_data.comfort_ids:
+#           if i not in d[room_id]:
+#               await db.rooms_comfort.add(RoomsComfortAdd(room_id=room_id, comfort_id=i))
+#    # удалить то, чего нет
+#    for j in d[room_id]:
+#        if j not in room_data.comfort_ids:
+#            await db.rooms_comfort.delete(room_id=room_id, comfort_id=j)
 
     await db.commit()
     return {"status": "200"}
 
 @router.patch("/{hotel_id}/rooms/{room_id}", summary="Частичное обновление данных номера")
-async def update_partially(db: DBDep, room_id: int, hotel_id: int, room_data: RoomsPatchRequest):
+async def update_partially(db: DBDep,
+                           room_id: int,
+                           hotel_id: int,
+                           room_data: RoomsPatchRequest
+                           ):
 
-    if room_data.comfort_ids:
-        await db.rooms_comfort.get_filtered(room_id=room_id)  # [RoomsComfort(room_id=11, comfort_id=1, id=1), RoomsComfort(room_id=11, comfort_id=2, id=2)]
-        await db.rooms_comfort.delete(room_id=room_id)
+    _room_data_dict = room_data.model_dump(exclude_unset=True) # проверка через pydantic словарик наличия comfort_ids
+    _room_data = RoomsPatch(hotel_id=hotel_id, **_room_data_dict)
+    await db.rooms.update_partially(_room_data, id=room_id, hotel_id=hotel_id, exclude_unset=True)
 
-        rooms_comfort_data = [RoomsComfortAdd(room_id=room_id, comfort_id=com_id) for com_id in room_data.comfort_ids]
-        await db.rooms_comfort.add_bulk(rooms_comfort_data)
-    else:
-        _room_data = RoomsPatch(hotel_id=hotel_id, **room_data.model_dump())
-        await db.rooms.update_partially(room_data, id=room_id, hotel_id=hotel_id, exclude_unset=True)
-
+    if "comfort_ids" in _room_data_dict:
+        await db.rooms_comfort.set_room_comfort(room_id, comfort_ids=_room_data_dict["comfort_ids"])
 
     await db.commit()
     return {"status": "200"}

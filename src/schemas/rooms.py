@@ -6,7 +6,7 @@ class AddRoomRequest(BaseModel):
     description: str
     price: int
     quantity: int
-    comfort_ids: list[int] | None = None # при добавлении номера
+    comfort_ids: list[int] = [] # если ничего не передаем - то пустой массив лучше передавать
 
 class AddRoom(BaseModel):
     hotel_id: int
@@ -27,7 +27,7 @@ class RoomsPatchRequest(BaseModel):
         description: str | None = None
         price: int | None = None
         quantity: int | None = None
-        comfort_ids: list[int] | None = None
+        comfort_ids: list[int] = []
 
 # у опционального поля | None всегда должно быть задано значение = None
 class RoomsPatch(BaseModel):
@@ -36,4 +36,3 @@ class RoomsPatch(BaseModel):
     description: str | None = None
     price: int | None = None
     quantity: int | None = None
-    comfort_ids: list[int] | None = None
