@@ -14,9 +14,11 @@ router = APIRouter(prefix="/hotels", tags=['Номера'])
 async def get_all_rooms(db: DBDep, hotel_id: int, date_from: date = Query(example="2024-07-01"), date_to: date = Query(example='2024-07-31')):
     return await db.rooms.get_filtered_by_time(hotel_id=hotel_id, date_from=date_from, date_to=date_to)
 
-@router.get("/{hotel_id}/rooms/{room_id}", summary="Получить информацию о номере")
+
+
+@router.get("/{hotel_id}/rooms/{room_id}", summary="Получить информацию об 1 номере")
 async def get_one_room(db: DBDep, room_id: int, hotel_id: int): # указали hotel_id иначе не будет проверки по отелю и у любых отелей будет какой-то номер
-    return await db.rooms.get_one_or_none(id=room_id, hotel_id=hotel_id)
+    return await db.rooms.get_one_filtered(id=room_id, hotel_id=hotel_id)
 
 
 
