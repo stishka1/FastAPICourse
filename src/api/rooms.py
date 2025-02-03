@@ -77,6 +77,7 @@ async def update_partially(db: DBDep,
     _room_data = RoomsPatch(hotel_id=hotel_id, **_room_data_dict)
     await db.rooms.update_partially(_room_data, id=room_id, hotel_id=hotel_id, exclude_unset=True)
 
+    # проверка на присутствие чтобы патч корректно выполнился
     if "comfort_ids" in _room_data_dict:
         await db.rooms_comfort.set_room_comfort(room_id, comfort_ids=_room_data_dict["comfort_ids"])
 

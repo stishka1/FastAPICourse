@@ -1,5 +1,8 @@
 from pydantic import BaseModel, ConfigDict
 
+from src.schemas.comfort import Comfort
+
+
 # нет hotel_id специально чтобы забирать из параметров пути для POST
 class AddRoomRequest(BaseModel):
     title: str
@@ -36,3 +39,27 @@ class RoomsPatch(BaseModel):
     description: str | None = None
     price: int | None = None
     quantity: int | None = None
+
+class RoomsWithRelationships(Room):
+    comforts: list[Comfort]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/rooms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/rooms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/repos/comfort.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/comfort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Rooms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Rooms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/comfort.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/comfort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repos/rooms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/rooms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schemas/rooms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/rooms.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,7 +148,11 @@
       <workItem from="1737534872185" duration="20736000" />
       <workItem from="1737636483887" duration="10341000" />
       <workItem from="1737719971200" duration="3775000" />
-      <workItem from="1737798492906" duration="33664000" />
+      <workItem from="1737798492906" duration="33778000" />
+      <workItem from="1737888751539" duration="1952000" />
+      <workItem from="1738150573914" duration="8420000" />
+      <workItem from="1738576680098" duration="14000" />
+      <workItem from="1738590030738" duration="1581000" />
     </task>
     <task id="LOCAL-00001" summary="base">
       <option name="closed" value="true" />

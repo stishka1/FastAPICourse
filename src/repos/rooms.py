@@ -2,12 +2,13 @@ from datetime import date
 
 from sqlalchemy import select, func
 from sqlalchemy.sql.functions import coalesce
+from sqlalchemy.orm import selectinload, joinedload
 
 from src.models.bookings import BookingsOrm
 from src.repos.base import BaseRepository
 from src.models.rooms import RoomsOrm
 from src.repos.utils import rooms_ids_for_booking
-from src.schemas.rooms import Room
+from src.schemas.rooms import Room, RoomsWithRelationships
 
 
 class RoomsRepository(BaseRepository):
@@ -28,4 +29,35 @@ class RoomsRepository(BaseRepository):
         """
         rooms_ids_to_get = rooms_ids_for_booking(date_from, date_to, hotel_id)
 
-        return await self.get_filtered(RoomsOrm.id.in_(rooms_ids_to_get))
+        query = (
+            select(self.model)
+            .options(selectinload(self.model.comforts)) # или можно использовать joinedload (джоины вместо селектов)
+            .filter(RoomsOrm.id.in_(rooms_ids_to_get))
+        )
+
+        result = await self.session.execute(query)
+        return [RoomsWithRelationships.model_validate(model) for model in result.scalars().all()]
+        # await self.get_filtered(RoomsOrm.id.in_(rooms_ids_to_get))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
