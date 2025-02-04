@@ -4,13 +4,14 @@ from sqlalchemy import select, func
 from src.models.hotels import HotelsOrm
 from src.models.rooms import RoomsOrm
 from src.repos.base import BaseRepository
+from src.repos.mappers.mappers import HotelDataMapper
 from src.repos.utils import rooms_ids_for_booking
 from src.schemas.hotels import Hotel
 
 
 class HotelsRepository(BaseRepository):
     model = HotelsOrm
-    schema = Hotel
+    mapper = HotelDataMapper
 
     # сначала получаем все свободные номера, потом по этим свободным номерам вытаскиваем отели
     async def get_filtered_by_time(self,
@@ -48,7 +49,7 @@ class HotelsRepository(BaseRepository):
 
         result = await self.session.execute(query)
 
-        return [Hotel.model_validate(hotel, from_attributes=True) for hotel in result.scalars().all()]
+        return [self.mapper.map_to_domain_entity(hotel) for hotel in result.scalars().all()]
 
 
 

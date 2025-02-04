@@ -10,9 +10,6 @@ class HotelAdd(BaseModel):
 class Hotel(HotelAdd): # наследуемся чтобы полностью соответствовать модели HotelsOrm, значит легко превратить в pydantic схему (вернуть)
     id: int
 
-    # при помощи паттерна DataMapper из SQL Alchemy преобразуем в Pydantic схему
-    model_config = ConfigDict(from_attributes=True)
-
 class HotelPatch(BaseModel):
     title: str | None = None # обязательно указывать значение по умолчанию иначе работать не будет
     location: str | None = None # обязательно указывать значение по умолчанию иначе работать не будет

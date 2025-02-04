@@ -5,9 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2c0e13c-f9fe-4c3e-ac59-a3f31050b36c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/repos/mappers/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/repos/mappers/mappers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/rooms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/rooms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repos/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repos/bookings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/bookings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repos/comfort.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/comfort.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repos/hotels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/hotels.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/repos/rooms.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/rooms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/repos/users.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/repos/users.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/hotels.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/hotels.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +155,8 @@
       <workItem from="1737888751539" duration="1952000" />
       <workItem from="1738150573914" duration="8420000" />
       <workItem from="1738576680098" duration="14000" />
-      <workItem from="1738590030738" duration="3232000" />
+      <workItem from="1738590030738" duration="4956000" />
+      <workItem from="1738657084041" duration="5600000" />
     </task>
     <task id="LOCAL-00001" summary="base">
       <option name="closed" value="true" />

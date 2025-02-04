@@ -1,11 +1,13 @@
 from pydantic import BaseModel
 from sqlalchemy import select, insert, update, delete
+
+from src.repos.mappers.base import DataMapper
 from src.schemas.hotels import Hotel
 
 
 class BaseRepository: # паттерн Репозиторий в действии (базовые CRUD операции для всего проекта)
     model = None
-    schema: BaseModel = None
+    mapper: DataMapper = None
 
     def __init__(self, session):
         self.session = session
@@ -20,7 +22,7 @@ class BaseRepository: # паттерн Репозиторий в действи�
             .filter(*filter) # добавили в блоке про сырые sql запросы
         )
         result = await self.session.execute(query)
-        return [self.schema.model_validate(model, from_attributes=True) for model in result.scalars().all()]
+        return [self.mapper.map_to_domain_entity(model) for model in result.scalars().all()]
     """
     паттерн DataMapper в действии -> возвращаем не объект базы данных, а pydantic схему
     с помощью from_attributes мы забираем данные с модели (все поля)
@@ -39,7 +41,7 @@ class BaseRepository: # паттерн Репозиторий в действи�
         model = result.scalars().one_or_none()
         if model is None:
             return None
-        return self.schema.model_validate(model, from_attributes=True)
+        return self.mapper.map_to_domain_entity(model)
 
     # добавить данные в БД
     async def add(self, data: BaseModel):
@@ -47,7 +49,7 @@ class BaseRepository: # паттерн Репозиторий в действи�
         #print(add_data_stm.compile(engine, compile_kwargs={"literal_binds": True})) # лог SQL транзакции в консоль с реальными данными - для дебага SQL запроса
         result = await self.session.execute(add_data_stm)
         model = result.scalars().one()
-        return self.schema.model_validate(model, from_attributes=True)
+        return self.mapper.map_to_domain_entity(model)
 
 
 #-------------------------- Массовое изменение данных ------------------------------------------------------------------
